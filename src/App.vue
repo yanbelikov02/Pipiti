@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Аудио Парсер</h1>
+    <h1 class="title">Аудио Конвертер</h1>
     <div 
       class="drop-zone" 
       @dragover.prevent 
@@ -68,18 +68,33 @@ export default {
       const formData = new FormData();
       formData.append("file", selectedFile.value);
       
-      try {
-        const response = await fetch("http://127.0.0.1:8000/extract-metadata/", {
-          method: "POST",
-          body: formData,
-        });
+      // try {
+      //   const response = await fetch("http://127.0.0.1:8000/extract-metadata/", {
+      //     method: "POST",
+      //     body: formData,
+      //   });
         
-        if (!response.ok) throw new Error("Ошибка загрузки");
+      //   if (!response.ok) throw new Error("Ошибка загрузки");
         
-        metadata.value = await response.json();
-      } catch (error) {
-        console.error("Ошибка загрузки файла:", error);
+      //   metadata.value = await response.json();
+      // } catch (error) {
+      //   console.error("Ошибка загрузки файла:", error);
+      // }
+
+      metadata.value = {
+        "название": "Путь к звёздам",
+        "исполнитель": "Группа Вдохновение",
+        "альбом": "Звуки Вселенной",
+        "год": 2025,
+        "жанр": "Электронная музыка",
+        "длительность": "03:45",
+        "битрейт": "320 kbps",
+        "формат файла": "MP3",
+        "кодек": "MPEG-1 Audio Layer III",
+        "комментарии": "Сгенерированные метаданные для демонстрационных целей"
       }
+        
+      
     };
     
     return { selectedFile, metadata, handleFileUpload, handleDrop, uploadFile, triggerFileInput, fileInput };
@@ -88,12 +103,21 @@ export default {
 </script>
 
 <style>
+:root {
+  --primary: #009494;
+  --primary-dark: #045c5c;
+  --secondary: #11a7a8;
+  --accent: #40cece;
+  --light: #f8f9fa;
+  --white: #ffffff;
+}
+
 .container {
   max-width: 500px;
   margin: auto;
   text-align: center;
   padding: 20px;
-  background: #fff;
+  background: var(--white);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -101,38 +125,42 @@ export default {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 15px;
+  color: var(--primary);
 }
 .drop-zone {
-  border: 2px dashed #007bff;
+  border: 2px dashed var(--accent);
   padding: 30px;
   border-radius: 10px;
-  background: #f8f9fa;
+  background: var(--light);
   margin-bottom: 15px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 .drop-zone:hover {
-  background: #e2e6ea;
+  background: #e0f7f7;
 }
 .file-btn {
-  background: #007bff;
-  color: white;
+  background: var(--primary);
+  color: var(--white);
   border: none;
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
+  transition: background 0.3s;
 }
 .file-btn:hover {
-  background: #0056b3;
+  background: var(--primary-dark);
 }
 .upload-btn {
-  background: #28a745;
-  color: white;
+  background: var(--secondary);
+  color: var(--white);
   border: none;
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
+  transition: background 0.3s;
 }
 .upload-btn:disabled {
   background: #ccc;
@@ -146,7 +174,7 @@ export default {
 .metadata {
   margin-top: 20px;
   text-align: left;
-  background: #f8f9fa;
+  background: var(--light);
   padding: 15px;
   border-radius: 5px;
 }
@@ -162,15 +190,15 @@ export default {
   border-bottom: 1px solid #ddd;
 }
 .styled-table th {
-  background: #007bff;
+  background: var(--primary);
   color: white;
   text-align: left;
   font-weight: bold;
 }
 .styled-table tr:nth-child(even) {
-  background: #f9f9f9;
+  background: #f1fdfd;
 }
 .styled-table tr:hover {
-  background: #f1f1f1;
+  background: #dff8f8;
 }
 </style>
