@@ -1,15 +1,23 @@
 <template>
     <nav class="menu">
-      <a href="/#products">Продукты</a>
-      <a href="/#about">О компании</a>
-      <a href="/#video">Видео</a>
-      <a href="/#contact">Контакты</a>
+      <a @click.prevent="scrollToSection('products')">Продукты</a>
+      <a @click.prevent="scrollToSection('about')">О компании</a>
+      <a @click.prevent="scrollToSection('video')">Видео</a>
+      <a @click.prevent="scrollToSection('contact')">Контакты</a>
       <router-link to="/parser">Аудио парсер</router-link>
     </nav>
   </template>
   
   <script setup>
-  // логики пока нет
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
   </script>
   
   <style scoped>
@@ -22,6 +30,7 @@
     text-decoration: none;
     font-size: 14px;
     transition: opacity 0.2s;
+    cursor: pointer;
   }
   .menu a:hover {
     opacity: 0.8;

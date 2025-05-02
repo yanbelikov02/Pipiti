@@ -4,32 +4,33 @@
   
       <div class="video-grid">
         <div class="video">
-          <iframe
+          <video
             width="100%"
             height="300"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="Видео №1"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
+            controls
+          >
+            <source :src="videoUrl" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
         </div>
   
         <div class="video">
-          <iframe
+          <video
             width="100%"
             height="300"
-            src="https://www.youtube.com/embed/tgbNymZ7vqY"
-            title="Видео №2"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
+            controls
+          >
+            <source :src="videoUrl2" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
         </div>
       </div>
     </section>
   </template>
   
   <script setup>
-  // нет логики
+  import videoUrl from '@/assets/video/video_2025-05-02_11-14-29.mp4'
+  import videoUrl2 from '@/assets/video/video_2025-05-02_11-15-02.mp4'
   </script>
   
   <style scoped>
@@ -49,9 +50,16 @@
     gap: 20px;
   }
   .video {
-    background: #ccc;
     border-radius: 10px;
     overflow: hidden;
+    background: transparent;
+    line-height: 0;
+  }
+  .video video {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
   }
   @media (max-width: 768px) {
     .video-grid {

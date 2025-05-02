@@ -1,9 +1,8 @@
 // 📁 src/components/LoginButton.vue
 <template>
   <div>
-    <button class="login-btn" @click="showModal = true">
-      Вход
-    </button>
+    <Button label="Вход" @click="showModal = true" />
+
 
     <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
       <div class="modal">
@@ -20,6 +19,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import Button from 'primevue/button'
 
 const showModal = ref(false);
 const login = ref('');
