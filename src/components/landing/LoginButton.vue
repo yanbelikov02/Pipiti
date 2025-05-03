@@ -1,8 +1,8 @@
 // 📁 src/components/LoginButton.vue
 <template>
   <div>
-    <Button v-if="!isAuthenticated" label="Вход" @click="showModal = true" />
-    <Button v-else label="Выйти" @click="handleLogout" />
+    <button v-if="!isAuthenticated" class="login-btn" @click="showModal = true">Вход</button>
+    <button v-else class="logout-btn" @click="handleLogout">Выйти</button>
 
     <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
       <div class="modal">
@@ -42,12 +42,12 @@
 </template>
 
 <script setup>
-import { ref, provide } from 'vue';
-import Button from 'primevue/button'
+import { ref, inject } from 'vue';
+// import Button from 'primevue/button' // больше не нужен
 
 const showModal = ref(false);
 const activeTab = ref('login');
-const isAuthenticated = ref(false);
+const isAuthenticated = inject('isAuthenticated');
 
 // Login form data
 const login = ref('');
@@ -59,12 +59,11 @@ const email = ref('');
 const registerPassword = ref('');
 const confirmPassword = ref('');
 
-provide('isAuthenticated', isAuthenticated);
-
 const handleSubmit = () => {
   if (activeTab.value === 'login') {
     // Здесь будет реальная проверка логина и пароля
     isAuthenticated.value = true;
+    localStorage.setItem('isAuthenticated', JSON.stringify(true));
     showModal.value = false;
   } else {
     if (registerPassword.value !== confirmPassword.value) {
@@ -73,12 +72,14 @@ const handleSubmit = () => {
     }
     // Здесь будет реальная регистрация
     isAuthenticated.value = true;
+    localStorage.setItem('isAuthenticated', JSON.stringify(true));
     showModal.value = false;
   }
 };
 
 const handleLogout = () => {
   isAuthenticated.value = false;
+  localStorage.removeItem('isAuthenticated');
   login.value = '';
   password.value = '';
 };
@@ -89,19 +90,55 @@ const handleLogout = () => {
   background: var(--accent);
   color: var(--white);
   border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
+  padding: 9px 22px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.18s, color 0.18s;
+  outline: none;
+  margin-left: 8px;
 }
-.login-btn:hover {
-  background: var(--primary-dark);
+.login-btn:hover, .login-btn:focus {
+  background: var(--primary);
+  color: var(--white);
+}
+.logout-btn {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid var(--white);
+  padding: 9px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 8px;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+}
+.logout-btn:hover, .logout-btn:focus {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--primary);
+}
+@media (max-width: 900px) {
+  .login-btn, .logout-btn {
+    width: auto;
+    min-width: 120px;
+    font-size: 17px;
+    padding: 11px 0 11px 0;
+    margin-left: 0;
+    border-radius: 999px;
+    display: block;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
 }
 
 .modal-overlay {
   position: fixed;
-  top: 0;
+  top: 250px;
   left: 0;
   right: 0;
   bottom: 0;

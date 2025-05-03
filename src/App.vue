@@ -2,11 +2,25 @@
   <div id="app">
     <Header />
     <router-view />
-     </div>
+  </div>
 </template>
 
 <script setup>
+import { ref, provide, onMounted } from 'vue';
 import Header from '@/components/landing/Header.vue';
+
+const isAuthenticated = ref(false);
+
+// Восстанавливаем состояние аутентификации при загрузке
+onMounted(() => {
+  const savedAuth = localStorage.getItem('isAuthenticated');
+  if (savedAuth) {
+    isAuthenticated.value = JSON.parse(savedAuth);
+  }
+});
+
+// Делаем isAuthenticated доступным для всех компонентов
+provide('isAuthenticated', isAuthenticated);
 </script>
 
 <style>

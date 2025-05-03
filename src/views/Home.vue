@@ -26,7 +26,4 @@ import FooterSection from '@/components/landing/Footer.vue'
 </script>
 
 <style scoped>
-main {
-  padding-top: 56px; /* Компенсация для фиксированной шапки */
-}
 </style>
