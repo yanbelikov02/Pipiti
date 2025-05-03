@@ -2,8 +2,11 @@
     <div id="app">
       <Header />
       <HeroSection />
-      <ProductSection />
       <AboutSection />
+      <ProductSection />
+      <FeaturesSection />
+      <UseCaseSection />
+      <AdvantagesSection />
       <VideoSection />
       <ContactSection />
       <Footer />
@@ -13,13 +16,15 @@
   <script setup>
   import Header from './components/landing/Header.vue';
   import HeroSection from './components/landing/HeroSection.vue';
-  import ProductSection from './components/landing/ProductSection.vue';
-  import VideoSection from './components/landing/VideoSection.vue';
-  import Footer from './components/landing/Footer.vue';
-  import ContactSection from './components/landing/ContactSection.vue';
   import AboutSection from './components/landing/AboutSection.vue';
-
-
+  import ProductSection from './components/landing/ProductSection.vue';
+  import FeaturesSection from './components/landing/FeaturesSection.vue';
+  import UseCaseSection from './components/landing/UseCaseSection.vue';
+  import AdvantagesSection from './components/landing/AdvantagesSection.vue';
+  import VideoSection from './components/landing/VideoSection.vue';
+  import ContactSection from './components/landing/ContactSection.vue';
+  import Footer from './components/landing/Footer.vue';
+  
   </script>
   
   <style>
