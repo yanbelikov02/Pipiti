@@ -28,6 +28,19 @@
           <p>Инструмент для аудита и защиты данных в облачных и локальных средах. Включает модуль шифрования и интеллектуального мониторинга.</p>
           <a href="#contact" class="learn-more">Подробнее →</a>
         </div>
+
+        <div class="product-card">
+          <div class="product-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="4"/>
+              <circle cx="8" cy="12" r="1.5"/>
+              <circle cx="16" cy="12" r="1.5"/>
+            </svg>
+          </div>
+          <h3>Мессенджер</h3>
+          <p>Мессенджер для пассивного анализа и раннего выявления угроз безопасности пользователя.</p>
+          <a href="#bot" class="learn-more">Подробнее →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -53,19 +66,22 @@ h2 {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  max-width: 800px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .product-card {
   background: white;
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: 12px;
+  padding: 22px;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product-card:hover {
@@ -74,14 +90,14 @@ h2 {
 }
 
 .product-icon {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   background: var(--primary);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   color: white;
 }
 
@@ -110,6 +126,12 @@ p {
 
 .learn-more:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
